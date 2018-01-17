@@ -13,11 +13,13 @@
   },
   "devDependencies": {
     "browserify": "^15.2.0",
-    "chai": "^4.1.2",
     "eslint": "4.5.0",
     "mocha": "3.1.2",
     "runmd": "1.0.1",
-    "standard-version": "4.2.0",
+    "standard-version": "4.2.0"
+  },
+  "optionalDependencies": {
+    "chai": "^4.1.2",
     "wdio-mocha-framework": "^0.5.12",
     "wdio-sauce-service": "^0.4.6",
     "wdio-selenium-standalone-service": "0.0.9",
@@ -26,8 +28,10 @@
     "webdriverio": "^4.10.1"
   },
   "scripts": {
-    "test": "mocha test/test.js",
+    "test": "npm run test:unit; npm run test:browser",
+    "test:unit": "mocha test/test.js",
     "test:browser": "test/bundle.sh; wdio test/wdio.standalone.js",
+    "test:ci": "test/travis-ci.sh",
     "test:sauce": "test/bundle.sh; wdio test/wdio.sauce.js",
     "md": "runmd --watch --output=README.md README_js.md",
     "release": "standard-version",
